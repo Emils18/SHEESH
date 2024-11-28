@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Try</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ebeadc;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            height: 300px; /* Increased height for more space */
+            max-width: 580px;
+            margin: 250px auto;
+            padding: 20px; /* Adjusted padding */
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+            position: relative; /* Needed for absolute positioning */
+        }
+        h1 {
+            color: #333;
+            font-size: 36px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px; /* Adjusted margin for spacing */
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #c79ad3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 20px;
+            width: 150px;
+            height: 60px;
+            position: relative;
+        }
+        button:hover {
+            background-color: #ad98bb;
+        }
+        .message {
+            font-size: 24px;
+            color: #333;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>NAKOI ASK</h1>
+    <div class="container">
+        <button id="yesButton">Yes</button>
+        <button id="noButton">No</button>
+        <div class="message" id="message">Oi charmi</div>
+    </div>
+    <script>
+        const yesMessages = [
+            'okay raman ka noh?',
+            'syempree ikaw nagud na',
+            'na koi ask nimo',
+            'ako raka ha?',
+            'yyeeeyyyy'
+        ];
+
+        let yesIndex = 0;
+
+        document.getElementById('yesButton').addEventListener('click', function() {
+            document.getElementById('message').textContent = yesMessages[yesIndex];
+            yesIndex = (yesIndex + 1) % yesMessages.length;
+        });
+
+        document.getElementById('noButton').addEventListener('click', function() {
+            moveButtonAway();
+        });
+
+        function moveButtonAway() {
+            const noButton = document.getElementById('noButton');
+            const container = document.querySelector('.container');
+            const containerRect = container.getBoundingClientRect();
+            const buttonWidth = noButton.offsetWidth;
+            const buttonHeight = noButton.offsetHeight;
+
+            const newLeft = Math.random() * (containerRect.width - buttonWidth);
+            const newTop = Math.random() * (containerRect.height - buttonHeight);
+
+            noButton.style.position = 'absolute';
+            noButton.style.left = `${newLeft}px`;
+            noButton.style.top = `${newTop}px`;
+        }
+    </script>
+</body>
+</html>
